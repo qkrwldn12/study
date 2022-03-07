@@ -1,0 +1,8 @@
+/* 폰트 컬러 설정 */
+.fc_red {color: red;}
+.fc_purple {color:blueviolet;}
+.fc_blue { color: blue;}
+.fc_orange {color: darkorange;}
+
+/* 폰트 굵기 설정 */
+.fw_bold { font-weight: 700;}

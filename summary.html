@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>개념 정리</title>
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h2>개념 정리</h2>
+        <p>1. Ajax: 자바크스립트를 이용해 서버와 브라우저가 비동기 방식으로 데이터를 교환할 수 있는 통신 기능</p>
+        <p>2. Node.js: 구글 V8자바스크립트 엔진으로 빌드된 자바스크립트 런타임 환경, 자바스크립트 엔진을 브라우저에서 독립시킨 자바스크립트 실행 환경,<br>
+            비동기 I/O를 지원하며 단일 스레드이벤트 루프 기반으로 동작함으로써 요청 처리 성능이 좋다.</p>
+        <p>3. 웹 크롤링(web crawling): 서버에서 웹사이트의 콘텐츠를 수집하기 위해 웹사이트에서 HTML문서를 가져온 다음, 이를 가공해서 필요한 데이터만 추출</p>
+        <p>4. npm(node package manager): 자바스크립트 패키지 매니저. Node.js에서 사용할 수 있는 모듈들을 패키지화해서 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI를 제공.</p>
+        <p>5. 식별자는 값이 아니라 메모리 주소를 기억한다. 메모리 주소에 붙인 이름이라고 할수 있음.</p>
+        <p>6. 일반적으로 '초기화'란 변수가 선언된 이후 최초로 값을 할당하는 것을 말함. 자바스크립트는 선언시 자동으로 undefined를 초기값으로 할당함</p>
+        <p>7. 호이스팅(hoisting): 선언문이 코드의 선두로 끌어 올려진 것처럼 동작하는 자바스크립트 고유의 특징-> *모든 식별자(변수,함수,클래스 등)는 호이스팅된다.<br>
+            -> 변수 선언: 런타임 이전에 먼저 실행, 값의 할당: 런타임에 순차적 실행, ==> 하나의 문으로 단축표현해도 같은 결과임.
+        </p>
+        <p>자바스크립트는 <a class="fc_orange">대소문자를 구별함</a>, <a class="fw_bold fc_purple">** 값으로 평가될 수 있는 문은 모두 표현식이다!!</a></p>
+        <p>8. 문(statement): 프로그램을 구성하는 기본 단위이자 최소 실행 단위이다.</p>
+        <p>9. 토큰(token): 문법적인 의미를 가지며, 문법적으로 더 이상 나눌 수 없는 코드의 기본 요소를 의미한다.(문은 여러 토큰으로 구성된다.</p>
+        <p>10. 키워드(keyword): 자바스크립트 코드를 해석하고 실행하는 자바스크립트 엔진이 수행할 동작을 규정한 일종의 명령어이다. </p>
+        <p>11. 숫자타입은 정수를 위한 타입이 없고 모든 수를 실수로 처리한다. 따라서 <a class="fw_bold fc_purple">정수로 표시된 수끼리 나누더라도 실수가 나올 수 있다!!</a></p>
+        <p>12. 템플릿 리터럴: 문자열 표기법, 일반적인 따옴표 대신 백틱()을 사용함, 이스케이프 시퀀스를 사용하지 않고도 줄바꿈,공백도 있는 그대로 표시가 됨</p>
+        <p>13. 자바스크립트의 경우 변수 선언시 암묵적 정의가(undefined) 되므로 선언과 정의의 구분이 모호하다. 그러므로 <strong class="fc_purple">변수는 '선언한다' 함수는 '정의한다'로 표현</strong></p>
+        <p>14. 심벌(symbol): 변경 불가능한 원시 타입의 값. 심벌 값은 다른 값과 중복되지 않는 유일무이한 값,따라서 주로 이름이 충돌할 위헙이 없는 객체의 유일한 프로퍼티 키를 만들기 위해 사용(33장)</p>
+        <p>15. 문자열 연결 연산자에서 treu= 1, false= 0, null= 0 , undefined = NaN으로 타입 변환 </p>
+        <p>16. 동등비교(==)연산자는 암묵적 타입변화로 인해 결과를 예측하기 힘들어 <strong class="fc_purple">일치 비교 연산자(===)를 사용하는 것이 좋다.(암묵적 타입변화를 하지않고 비교를 하기 때문에)</strong><br>
+            <strong class="fc_purple">NaN은 자신과 일치하지 않는 유일한 값이다.</strong> 따라서 숫자가 NaN인지 조사하려면 빌트인 함수 <strong class="fc_red">Number.isNaN</strong>을 사용한다.<br>
+            -0,+0을 일치비교연산자(===)로 하면 true로 정확한 결과가 안나옴, 이때는 <strong class="fc_red">Object.js()</strong>를 사용한다. ex) Object.js(-0,+0) => false 로 정확한 결과가 나옴.
+        </p>
+        <p>17. 삼항 조건 연산자: 조건식? true시 반환할 값: false시 반환할 값, <strong class="fc_purple">값으로 평가할 수 있는 표현식인 문이다!</strong><br>
+            ex) var x = 2; var result = x % 2 ? '홀수' : '짝수' // 2%2 은 0이므로 'false' -> result = '짝수' 가 할당됨
+        </p>
+        <p>18. 논리부정(!) 연산자는 언제나 불리언 값을 반환한다. 암묵적 타입 변화를 함 ex) !0; //true</p>
+        <p class="fc_orange">19. null 타입인지 확인할 때는 typeof 연산자가 아닌 <strong class="fc_red">일치 연산자(===)</strong>를 사용한다!</p>
+        <hr>
+        <h3>8장 제어문</h3>
+        <p>1. 레이블문이란 식별자가 붙은 문이라 함. 레이블문을 탈출하려면 break문에 리이블 식별자를 지정한다. ex) foo: { console.log(1); break foo; // foo 레이블문을 탈출함 } <br>
+            내부 for문이 아닌 외부 for문을 탈출하려면 레이블 문을 사용한다.(중첩 for문 외부로 탈출할때 유용하지만 그 밖의 경우에는 일반적으로 권장하지 않음.)
+        </p>
+        <hr>
+        <h3>9장 타입 변환과 단축 평가</h3>
+        <h4>1. 암묵적 타입 변환</h4>
+        <p>1) + 연산자는 피연산자 중 하나 이상이 문자열이면 문자열 연결 연산자로 동작한다. ex) 1 + '12' // -> "112" <br>
+            + 단항 연산자는 피연산자가 숫자 타입의 값이 아니면 숫자타입의 값으로 암묵적 타입변환을 한다. ex) +0 // -> 0
+        </p>
+        <p>2) [숫자타입으로 변환] <strong class="fc_purple">빈 문자열(''), 빈 배열[], null, false는 0으로,</strong> true는 1로 변환된다. 객체와 빈 배열이 아닌 배열, undifined는 변환되지 않아 NaN이 된다!!!</p>
+        <p>3) [불리언 타입으로 변환] false값으로 평가되는 것들: false, undifined, null, 0, -0, NaN, ''(빈 문자열), <strong class="fc_purple">빈 문자열이 아닌 문자열은 true 값이다!!</strong>, <strong class="fc_red">[] {} 모두 true를 반환</strong></p>
+        <h4>2. 명시적 타입 변환</h4>
+        <p>1) 문자열 타입으로 변환 <br>
+         - String 생성자를 new 연산자 없이 호출하는 방법 ex) String(1); // "1" <br>
+         - Object.prototype.toString 메서드를 사용하는 방법 ex) (NaN).toString(); // "NaN" <br>
+         - + 문자열 연결 연산자를 이용하는 방법 ex) true + ''; // "true"
+        </p>
+        <p>2) 숫자 타입으로 변환 <br>
+         - Nunber 생성자 함수를 new 연산자 없이 호출하는 방법 ex) Number(false); // 0  <br>
+         - parseInt, parseFloat 함수를 사용하는 방법(문자열만 숫자타입으로 변환 가능) ex) parseInt(-1); // -1 <br>
+         - + 단항 산술 연산자를 이용하는 방법 ex) +'0'; // 0, +'true'; // 1<br>
+         - * 산술 연산자를 이용하는 방법 <strong class="fc_red">ex) false * 1; // 0</strong>
+        </p>
+        <p>3) 불리언 타입으로 변환 <br>
+         - Boolean 생성자 함수를 new 연산자 없이 호출하는 방법 ex) Boolean('false'); // true, Boolean(''); // false<br>
+         - ! 부정 논리 연산자를 <strong class="fc_red">두번</strong> 사용하는 방법 ex) !!Infinity; // true, !!{}; // true
+        </p>
+        <h4>3. 단축평가</h4>
+        <p>* 단축 평가: 연산의 결과를 결정하는 피연산자를 타입 변환하지 않고 그대로 반환하는 것</p>
+        <p>* 단축평가를 통해 논리연산을 수행한다!</p>
+        <p>1) 논리연산자를 사용한 단축 평가</p>
+        <p>- 논리합(||): 논리 연산의 결과를 결정하는 두번째 피연산자를 반환한다. ex) false || 'anythig' // "anythig" , 'cat' || false // "cat"</p>
+        <p>- 논리곱(&&): 논리 연산의 결과를 결정하는 첫번째 피연산자를 반환한다. ex) false && 'cat' // false, 'cat' && 'dog' // dog</p>
+        <p>2) 옵셔널 체이닝 연산자(?.): 좌항의 피연산자가 null 또는 undefined인 경우 <strong class="fc_red">undefined를 반환</strong>하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다. <br> 
+            * 객체를 가리키기를 기대하는 변수가 null 또는 undefined가 아닌지 확인하고 프로퍼티를 참조할 때 유용하다.</p>
+        <p>3) null 병합 연산자(??): 좌항의 피연산자가 null 또는 undefined인 경우 <strong class="fc_red">우항의 피연산자를 반환</strong>하고, 그렇지 않으면 우항의 피연산자를 반환한다. <br> 
+            * 변수에 기본값을 설정할 때 유용하다. </p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <hr>
+        <h2>단축어</h2>
+        <p>터미널: com + ;</p>
+        <p>ctl + option + n: 현재 포커스된 js파일이 살행됨</p>
+    </body>
+</html>
+

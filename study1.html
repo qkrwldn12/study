@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>콘솔 연습</title>
+    </head>
+    <body>
+        <div id="counter">0</div>
+        <div id="increase">+</div>
+        <div id="decrease">-</div>
+
+        <script>
+            // console연습 예제임
+            const $counter = document.getElementById('counter');
+            const $increase = document.getElementById('increase');
+            const $decrease = document.getElementById('decrease');
+
+            let num = 0;
+            const render = function () { $counter.innerHTML = num; };
+
+            $increase.onclick = function () {
+                num++;
+                console.log('increase 버튼 클릭', num);
+                render();
+            };
+
+            $decrease.onclick = function () {
+                num--;
+                console.log('decrease 버튼 클릭', num);
+                render();
+            };
+
+
+        </script>
+    </body>
+</html>
