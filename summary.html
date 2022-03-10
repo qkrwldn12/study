@@ -312,7 +312,7 @@
         <h4>5. 객체 변경 방지</h4>
         <ul class="bul_list">
             <li>프로퍼티 추가는 동적 추가와 Object.defineProperty 메서드로 추가할 수 있다.</li>
-            <li></li>
+       
         </ul>
         <p>1) 객체 확장 금지
             <ul class="dash_list">
@@ -340,6 +340,100 @@
                     -> 깊은 변경 방지를 하기 위해서는 <strong class="fc_orange">재귀적으로 해당 메서드를 호출</strong>해야한다.</li>
             </ul>
         </p>
+        <hr>
+        <h3>17장 생성자 함수에 의한 객체 생성</h3>
+        <h4>1. Object 생성자 함수</h4>
+        <ul class="dash_list">
+            <li><strong class="fc_purple">생성자 함수</strong>: new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수를 말한다.</li>
+            <li><strong class="fc_purple">인스턴스</strong>: 생성자 함수에 의해 생성된 객체</li>
+            <li>new 연산자와 함께 object 생성자 함수를 호출하면 빈 객체를 생성하여 반환한다.</li>
+        </ul>
+        <h4>2. 생성자 함수</h4>
+        <p>1) 객체 리터럴에 의한 객체 생성 방식은 동일한 프로퍼티를 갖는 객체를 여러 개 생성해야 하는 경우 매번 같은 프러퍼티를 기술해야 하기 때문에 <strong class="fc_orange">비효율적</strong>이다.</p>
+        <p>2) 생성자 함수에 희한 객체 생성 방식의 장점: 객체(인스턴스)를 생성하기 위한 템플릿(클래스)처럼 생성자 함수를 사용하여 프로퍼티 구조가 동일한 객체 여러 개를 간편하게 생성할 수 있다.
+            <ul class="dash_list">
+                <li>this: 객체 자신의 프로퍼티나 메서드를 참조하기 위한 자기 참조 변수이다. 함수 호출 방식에 따라 동적으로 결정된다.</li>
+                <li class="fc_orange">new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다.</li>
+            </ul>
+        </p>
+        <p>3) 생성자 함수의 인스턴스 생성 과정
+            <p>* 자바스크립트 엔진은 암묵적인 처리를 통해 인스턴스를 생성하고 반환한다.</p>
+            <p>* 바인딩: 식별자와 값을 연결하는 과정</p>
+            <ul class="dash_list">
+                <li>암묵적으로 생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다.(런타임 이전에 바인딩이 됨) -> 생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유이다.</li>
+                <li>생성자 함수 내부의 모든 처리가 끝나면 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환(객체)된다.</li>
+                <li class="fc_red">명시적으로 원시값을 반환하면 원시 값은 무시되고 암묵적으로 this가 반환 된다. ex) return 100; // 100은 무시되고 해당 객체가 반환됨</li>
+                <li class="fc_orange">그러므로 생성자 함수 내부에서 return문을 반드시 생략해야 한다.</li>
+            </ul>
+        </p>
+        <p>4) 내부 메서드 [[Call]], [[Construct]]
+            <ul class="dash_list">
+                <li class="fc_orange">함수는 객체지만 일반객체와 다른데 일반 객체는 호출할 수 없지만, 함수는 호출할 수 있다.</li>
+                <li>callable: 내부 메서드 [[Call]]을 갖는 함수 객체, 함수가 일반함수로서 호출되면 함수 객체의 내부 메서드[[Call]]가 호출된다.</li>
+                <li>constructor: 내부 메서드 [[Construct]]을 갖는 함수 객체, new연산자와 함께 생성자 함수로서 호출되면 내부메서드[[Construct]]가 호출된다.</li>
+                <li class="fc_orange">함수 객체는 반드시 callable이며 일반 함수로서만 호출할 수 있는 객체는 (non-constructor, callable)이며, 
+                    일반함수 또는 생성자 함수로서 호출할 수 있는 객체는 (constructor, callable)이다. 
+                </li>
+                <li>constructor: <strong class="fc_purple">함수 선언문, 함수 표현식, 클래스(클래스도 함수다)</strong>, non-constructor: <strong class="fc_purple">메서드(ES6의 메서드 축약표현), 화살표 함수</strong></li>
+               
+            </ul>
+        </p>
+        <p>5) [ES6]new.target 연산자: 생성자 함수가 new 연산자 없이 호출되는 것을 방지하기 위한 연산자
+            <ul class="dash_list">
+                <li>new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 <strong class="fc_purple">함수자신</strong>을 가리킨다. 
+                    new연산자 없이 일반 함수로서 호출된 함수 내부의 new.target은 <strong class="fc_purple">undefined</strong>다.</li>
+                <li>new 연산자와 함께 <strong class="fc_orange">재귀 호출을 통해 생성자 함수로서 호출할 수 있다.</strong> <br>
+                    ex) function Circle(radius) { <strong class="fc_green">// 이 함수가 new 연산자와 함께 호출되지 않았다면 new.target은 undefined다.</strong> <br>
+                         if(!new.target) { return new Circle(radius); } <strong class="fc_green">// new 연산자와 함께 생성자 함수를 재귀 호출하여 생성된 인스턴스를 반환한다.</strong>
+                    }
+                </li>
+            </ul>
+        </p>
+        <hr>
+        <h3>18장 함수와 일급 객체</h3>
+        <h4>1. 일급 객체</h4>
+        <p>* 자바스크립트의 <strong class="fc_purple">함수는 일급객체</strong>이다. == 함수를 객체와 동일하게 사용할 수 있다는 뜻이다.</p>
+        <p>* 다음과 같은 조건을 만족하는 객체를 일급객체라고 한다.</p>
+        <ul class="bul_list">
+            <li>무명의 리터럴로 생성할 수 있다. 즉, 런타임에 생성이 가능하다.</li>
+            <li>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</li>
+            <li>함수의 매개변수에 전달할 수 있다.</li>
+            <li>함수의 반환값으로 사용할 수 있다.</li>
+        </ul>
+        <h4>2. 함수 객체의 프로퍼티</h4>
+        <ul class="bul_list">
+            <li>함수는 객체이다. 그러므로 프로퍼티를 가질 수 있다.</li>
+            <li>함수의 프로퍼티는 length, name, arguments, caller(비표준 프로퍼티), prototype, __proto__ 로 구성되어 있다.</li>
+        </ul>
+        <p>1) arguments 프로퍼티
+            <ul class="dash_list">
+                <li>arguments 프로퍼티 값은 arguments의 값이다.</li>
+                <li>arguments 객체는 함수 호출 시 전달된 인수들의 정보를 담고있는 순회 가능한 유사배열 객체이며, 함수내부에서 지역 변수처럼 사용된다. 즉, 함수 외부에서는 참조할 수 없다.</li>
+                <li>arguments객체의 프로퍼티 구성
+                    <ul class="bul_list">
+                        <li>인수 정보: ex) 0:1, 1:4 ... -> 프로퍼티 키는 인수의 순서</li>
+                        <li>callee: 함수 자신</li>
+                        <li>length: 인수의 개수</li>
+                        <li>Symbol(Symbol.iterator): arguments 객체를 순회 가능한 자료구조인 이터러블로 만들기 위한 프로퍼티</li>
+                </li>
+                <li class="fc_orange">초과된 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다. 인수를 프로퍼티 값으로 소유하며 프로퍼티 키는 인수의 순서를 나타낸다.</li>
+                <li>arguments 객체는 <strong class="fc_red">매개변수 개수를 확정할 수 없는 가변인자 함수를 구현</strong>할 때 유용하다.</li>
+                <li>arguments 객체는 실제 배열이 아닌 유사배열 객체(length 프로퍼티를 사진 객체로 for문으로 순회할 수 있는 객체)이다.</li>
+            </ul>
+        </p>
+        <p>2) length 프로퍼티: 함수를 정의할 때 <strong class="fc_red">선언한 매개변수의 개수</strong>를 가리킨다.</p>
+        <p>3) name 프로퍼티: 함수 이름을 나타낸다.
+            <ul class="dash_list">
+                <li>[ES5]: 익명 함수 표현식에서는 <strong class="fc_orange">빈 문자열을 값</strong>으로 갖는다.</li>
+                <li>[ES6]: 익명 함수 표현식에서는 함수객체를 가리키는 <strong class="fc_orange">식별자를 값</strong>으로 갖는다.</li>
+            </ul>
+        </p>
+        <p>4) __proto__ 접근자 프로퍼티 : __proto__ 프로퍼티는 [[Prototype]]내부슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티이다.
+            <ul class="dash_list">
+                <li>모든 객체는 [[Prototype]]내부슬롯을 갖는다.</li>
+            </ul>
+        </p>
+        <p>5) prototype 프로퍼티: 생성자 함수로 호출할 수 있는 함수객체, 즉 construct만이 소유하는 프로퍼티이다. 일반객체와 생성자 함수로 호출할 수 없는 non-construct에는 prototype프로퍼티가 없다</p>
         <p></p>
         <p></p>
         <hr>
